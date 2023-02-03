@@ -7,6 +7,8 @@ import sys
 def main():
     # get file name and points from arguments
     file_name = "./transactions.csv"
+    if len(sys.argv) < 1:
+        raise Exception("Please provide points to deduct")
     points = int(sys.argv[1])
 
     # read csv file
@@ -21,7 +23,6 @@ def main():
 
     # sort transactions by timestamp
     df = df.sort_values(by="timestamp")
-    print(df)
 
     # deduct points based on oldest timestamp making sure that no payers go negative
     for index, row in df.iterrows():
